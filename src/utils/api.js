@@ -4,8 +4,74 @@ const API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MzZkMTZjOWU1MTMyNTlkYThmY2Y2Mz
 
 const BASE_URL = "https://api.themoviedb.org/3";
 
-export const fetchDataFromApi = async () => {
-    const url = `${BASE_URL}/trending/movie/day`
+export const fetchTrendingMovies = async () => {
+    const url = `${BASE_URL}/trending/movie/day?language=en-US`;
+    const options = {
+        headers: {
+            Authorization:
+                `Bearer ${API_KEY}`,
+        },
+    };
+    try {
+        const response = await axios.get(url, options);
+        return response.data.results;
+    } catch (error) {
+        console.error("Error fetching data from API:", error);
+        throw error;
+    }
+}
+
+export const fetchSearchedMovies = async () => {
+    const url = `${BASE_URL}/search/movie?include_adult=false&language=en-US&page=1`;
+    const options = {
+        headers: {
+            Authorization:
+                `Bearer ${API_KEY}`,
+        },
+    };
+    try {
+        const response = await axios.get(url, options);
+        return response.data.results;
+    } catch (error) {
+        console.error("Error fetching data from API:", error);
+        throw error;
+    }
+}
+
+export const fetchMovieDetails = async () => {
+    const url = `${BASE_URL}/movie/movie_id?language=en-US`;
+    const options = {
+        headers: {
+            Authorization:
+                `Bearer ${API_KEY}`,
+        },
+    };
+    try {
+        const response = await axios.get(url, options);
+        return response.data.results;
+    } catch (error) {
+        console.error("Error fetching data from API:", error);
+        throw error;
+    }
+}
+export const fetchMovieCasts = async () => {
+    const url = `${BASE_URL}/movie/movie_id/credits?language=en-US`;
+    const options = {
+        headers: {
+            Authorization:
+                `Bearer ${API_KEY}`,
+        },
+    };
+    try {
+        const response = await axios.get(url, options);
+        return response.data.results;
+    } catch (error) {
+        console.error("Error fetching data from API:", error);
+        throw error;
+    }
+}
+export const fetchMovieReviews = async () => {
+    const url = `${BASE_URL}/movie/movie_id/reviews?language=en-US&page=1`;
     const options = {
         headers: {
             Authorization:
