@@ -3,7 +3,8 @@ import React from "react";
 function MoviesPage() {
   return (
     <div>
-      <button></button>
+      <button>clc
+      </button>
     </div>
   );
 }

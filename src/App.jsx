@@ -4,47 +4,39 @@ import { lazy, Suspense } from "react";
 import "./App.css";
 
 import Loader from "./components/Loader";
-const Navigation = lazy(() => import("./components/Navigation"));
-const HomePage = lazy(() => import("./pages/HomePage"));
-const MoviesPage = lazy(() => import("./pages/MoviesPage"));
-
-// const url =
-//   "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1";
-
-// const options = {
-//   headers: {
-//     // eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MzZkMTZjOWU1MTMyNTlkYThmY2Y2MzAwZjFmZWI3OCIsIm5iZiI6MTc0MzcwNjgxNi42NTEsInN1YiI6IjY3ZWVkYWMwYjNlMDM1Mjg2Y2Q5MGQ5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZhiQgrAi8xURVIwPyhgnrhq88KOZAEHcX1G8OwLmwQM
-//     Authorization:
-//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MzZkMTZjOWU1MTMyNTlkYThmY2Y2MzAwZjFmZWI3OCIsIm5iZiI6MTc0MzcwNjgxNi42NTEsInN1YiI6IjY3ZWVkYWMwYjNlMDM1Mjg2Y2Q5MGQ5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZhiQgrAi8xURVIwPyhgnrhq88KOZAEHcX1G8OwLmwQM",
-//   },
-// };
+import { Toaster } from "react-hot-toast";
+const Navigation = lazy(() => import("./components/Navigation/Navigation"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
 
 function App() {
   return (
     <div className="App">
-      <Navigation />
+
       <Suspense fallback={<Loader />}>
+        <Navigation />
         <Routes>
-          <Route path="/" element={lazy(() => import("./pages/HomePage"))} />
+          <Route path="/" element={lazy(() => import("./pages/HomePage/HomePage"))} />
           <Route
             path="/movies"
-            element={lazy(() => import("./pages/MoviesPage"))}
+            element={lazy(() => import("./pages/MoviesPage/MoviesPage"))}
           />
           <Route
             path="/movie/:id"
-            element={lazy(() => import("./pages/MovieDetailsPage"))}
+            element={lazy(() => import("./pages/MovieDetails/MovieDetailsPage"))}
           >
             <Route
               path="cast"
-              element={lazy(() => import("./components/MovieCast"))}
+              element={lazy(() => import("./components/MovieCast/MovieCast"))}
             />
             <Route
               path="reviews"
-              element={lazy(() => import("./components/MovieReviews"))}
+              element={lazy(() => import("./components/MovieReviews/MovieReviews"))}
             />
           </Route>
           <Route path="*" element={<p>Page not found</p>} />
         </Routes>
+        <Toaster position="top-right" reverseOrder={false} />
       </Suspense>
     </div>
   );
