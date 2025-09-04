@@ -4,7 +4,7 @@ import Css from "./Loader.module.css";
 function Loader() {
   return (
     <div>
-      <div>ads</div>
+      <div>Loading</div>
     </div>
   );
 }

@@ -1,19 +1,30 @@
 import css from './MovieList.module.css'
 import { Link } from 'react-router-dom'
 
-const MovieList = () => {
+const MovieList = ({ data }) => {
     return (
         <div className={css.MovieListContainer}>
-            <h1>MovieList</h1>
-            {/* <ul className={css.MovieList}>
-                {movies.map((movie) => (
+            <h1 className={css.MovieListTitle}>Weekly Trends</h1>
+            <ul className={css.MovieList}>
+                {data.map((movie) => (
                     <li key={movie.id} className={css.MovieItem}>
                         <Link to={`/movie/${movie.id}`}>
-                            <p>{movie.title}</p>
+                            <div className={css.MovieCard}>
+                                <img
+                                    src={
+                                        movie.poster_path
+                                            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                            : 'https://via.placeholder.com/500x750?text=No+Image'
+                                    }
+                                    alt={movie.title}
+                                    className={css.MoviePoster}
+                                />
+                                <p>{movie.title}</p>
+                            </div>
                         </Link>
                     </li>
                 ))}
-            </ul> */}
+            </ul>
         </div>
     )
 }

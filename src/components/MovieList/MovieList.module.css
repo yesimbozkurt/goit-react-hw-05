@@ -1,7 +1,50 @@
 .MovieList {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
     padding: 20px;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.MovieItem {
+    list-style: none;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+
+.MoviePoster {
+    width: 200px;
+    height: 300px;
+}
+
+.MovieCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MovieCard:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.MovieCard p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.MovieListTitle {
+    text-align: center;
+    color: var(--text-color);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
 }
