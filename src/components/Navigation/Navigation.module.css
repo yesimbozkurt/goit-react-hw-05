@@ -1,0 +1,44 @@
+.nav {
+    padding: 10px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(155, 155, 179);
+}
+
+.webTitle {
+    font-size: 32px;
+    color: var(--text-color);
+
+}
+
+.navList {
+    display: flex;
+    /* justify-content: space-around; */
+    gap: 20px;
+    margin: auto 182px auto 16px;
+    list-style-type: none;
+}
+
+.navList li {
+    font-size: 28px;
+}
+
+.nav a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    position: relative;
+    padding: 5px 0;
+    font-weight: normal;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--primary-color);
+}
+
+.nav .active {
+    font-weight: bold;
+    color: var(--tertiary-color);
+}

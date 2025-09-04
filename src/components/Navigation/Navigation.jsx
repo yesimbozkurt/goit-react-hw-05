@@ -23,9 +23,6 @@ const Navigation = () => {
         </li>
       </ul>
       <h1 className={styles.webTitle}>MOVIE TIME</h1>
-      <div className={styles.webLogo}>
-
-      </div>
     </nav>
   );
 };
