@@ -13,7 +13,7 @@ const MovieList = ({ data }) => {
                                     src={
                                         movie.poster_path
                                             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                                            : 'https://dummyimage.com/200x300/000000/fff.jpg&text=image+not+found'
+                                            : 'https://dummyimage.com/200x300/a6aae3/131a78.jpg&text=image+not+found'
                                     }
                                     alt={movie.title}
                                     className={css.MoviePoster}
