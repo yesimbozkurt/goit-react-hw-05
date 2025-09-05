@@ -15,7 +15,6 @@ function MoviesPage() {
       setLoading(true);
       try {
         const data = await fetchSearchedMovies("");
-        console.log(data);
         setMovies(Array.isArray(data) ? data : data?.results ?? []);
       } catch (error) {
         console.error(error);
