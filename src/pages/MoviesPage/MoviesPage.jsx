@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchSearchedMovies } from "../../utils/api";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import Loader from "../../components/Loader";
 
 function MoviesPage() {
   const [movies, setMovies] = useState([]);
@@ -23,10 +24,10 @@ function MoviesPage() {
     };
     getMovies();
   }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const query = inputValue.trim();
-    console.log(query);
     if (!query) {
       toast.error("Please enter a search term");
       return;
@@ -34,11 +35,12 @@ function MoviesPage() {
     setLoading(true);
     try {
       const data = await fetchSearchedMovies(query);
-      setMovies(Array.isArray(data) ? data : (data?.results ?? []));
-      console.log(data);
+      if (data.length === 0) {
+        toast.error("No movies found");
+      }
+      setMovies(data);
     } catch (error) {
       console.error(error);
-      toast.error("Arama sırasında bir hata oluştu");
     } finally {
       setLoading(false);
     }
@@ -65,8 +67,8 @@ function MoviesPage() {
 
       {!loading && movies.length > 0 && (
         <ul>
-          {loading && <p>Loading...</p>}
-          {!loading && movies.length === 0 && <p>No movies found</p>}
+          {loading && <Loader />}
+          {/* {!loading && movies.length === 0 && <p>No movies found</p>} */}
           {movies.map((movie) => (
             <li key={movie.id}>
               <Link to={`/movie/${movie.id}`}>
@@ -76,7 +78,7 @@ function MoviesPage() {
           ))}
         </ul>
       )}
-
+      <Toaster position="top-right" />
     </div >
   );
 }

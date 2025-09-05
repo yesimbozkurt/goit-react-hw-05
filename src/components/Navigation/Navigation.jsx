@@ -1,14 +1,14 @@
 import { NavLink } from "react-router-dom";
-import styles from "./Navigation.module.css";
+import css from "./Navigation.module.css";
 
 const Navigation = () => {
   return (
-    <nav className={styles.nav}>
-      <ul className={styles.navList}>
+    <nav className={css.nav}>
+      <ul className={css.navList}>
         <li>
           <NavLink
             to="/"
-            className={({ isActive }) => (isActive ? styles.active : "")}
+            className={({ isActive }) => (isActive ? css.active : "")}
           >
             Home
           </NavLink>
@@ -16,13 +16,13 @@ const Navigation = () => {
         <li>
           <NavLink
             to="/movies"
-            className={({ isActive }) => (isActive ? styles.active : "")}
+            className={({ isActive }) => (isActive ? css.active : "")}
           >
             Movies
           </NavLink>
         </li>
       </ul>
-      <h1 className={styles.webTitle}>MOVIE TIME</h1>
+      <h1 className={css.title}>MOVIE TIME</h1>
     </nav>
   );
 };

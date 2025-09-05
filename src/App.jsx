@@ -5,7 +5,8 @@ import { Toaster } from "react-hot-toast";
 import MovieDetailsPage from "./pages/MovieDetails/MovieDetailsPage";
 import MovieReviews from "./components/MovieReviews/MovieReviews";
 import MovieCast from "./components/MovieCast/MovieCast";
-import { RiseLoader } from "react-spinners";
+import Loader from "./components/Loader";
+
 
 const Navigation = lazy(() => import("./components/Navigation/Navigation"));
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
@@ -15,7 +16,8 @@ function App() {
   return (
     <div className="App">
 
-      <Suspense fallback={<RiseLoader color="#43ccf2ff" />}>
+
+      <Suspense fallback={<Loader />}>
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />

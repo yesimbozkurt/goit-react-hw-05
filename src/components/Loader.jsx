@@ -1,10 +1,11 @@
 import React from "react";
 import Css from "./Loader.module.css";
+import { RiseLoader } from "react-spinners";
 
 function Loader() {
   return (
-    <div>
-      <div>Loading</div>
+    <div className={Css.loader}>
+      <div><RiseLoader color="#529df1ff" /></div>
     </div>
   );
 }
