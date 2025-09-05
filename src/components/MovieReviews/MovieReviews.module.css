@@ -1,0 +1,19 @@
+.reviewsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reviewsContainer p {
+    font-size: 16px;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reviewsContainer p span {
+    font-weight: bold;
+    color: var(--tertiary-color);
+    font-size: 18px;
+}

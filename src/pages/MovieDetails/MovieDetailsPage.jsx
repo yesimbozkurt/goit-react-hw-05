@@ -14,13 +14,11 @@ function MovieDetailsPage() {
     const getMovie = async () => {
       setLoading(true);
       try {
-
         if (!movieId) {
           setError("Geçersiz film ID'si.");
           return;
         }
         const data = await fetchMovieDetails(movieId);
-        console.log(data);
         setMovie(data);
         setError(null);
       } catch (error) {
@@ -33,7 +31,6 @@ function MovieDetailsPage() {
     getMovie();
   }, [movieId]);
   return (
-
     <div className={css.detailsContainer}>
       {loading && <Loader />}
       <button className={css.backButton} onClick={() => window.history.back()}>Go Back</button>
@@ -46,18 +43,18 @@ function MovieDetailsPage() {
             </div>
             <div className={css.detailsContext}>
               <h3>{movie.title}</h3>
-              <p><strong>Overview:</strong> {movie.overview}</p>
-              <p><strong>Genres:</strong> {movie.genres.map((genre) => genre.name).join(", ")}</p>
-              <p><strong>Release Date:</strong> {movie.release_date}</p>
-              <p><strong>Rating:</strong> {movie.vote_average}</p>
+              <p className={css.bold}>Overview:</p><p>{movie.overview}</p>
+              <p className={css.bold}>Genres:</p> <p>{movie.genres.map((genre) => genre.name).join(", ")}</p>
+              <p className={css.bold}>Release Date:</p> <p> {movie.release_date}</p>
+              <p className={css.bold}>Rating:</p> <p>{Math.round(movie.vote_average)}/10</p>
             </div>
           </div>
         )}
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
       <div className={css.tabs}>
-        <Link to="cast" className={css.link}>Cast</Link>
-        <Link to="reviews" className={css.link}>Reviews</Link>
+        <div className={css.tabsCast}><Link to="cast" className={css.link}>Casts</Link></div>
+        <div className={css.tabsReviews}><Link to="reviews" className={css.link}>Reviews</Link></div>
         <Outlet />
       </div>
     </div>

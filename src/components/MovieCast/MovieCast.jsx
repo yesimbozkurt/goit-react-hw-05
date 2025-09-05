@@ -2,9 +2,12 @@ import css from "./MovieCast.module.css";
 import { useEffect, useState } from "react";
 import { fetchMovieCasts } from "../../utils/api";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+
 const MovieCast = () => {
   const [casts, setCasts] = useState([]);
   const { movieId } = useParams();
+
   useEffect(() => {
     const getCast = async () => {
       try {
@@ -12,13 +15,15 @@ const MovieCast = () => {
         setCasts(data);
       } catch (error) {
         console.error(error);
+        toast.error("Failed to load casts");
       }
     };
     getCast();
   }, [movieId]);
+
   return (
     <div className={css.castContainer}>
-      <p>Cast</p>
+      <p>Casts</p>
       {casts && casts.map((cast) => {
         return (
           <div key={cast.id} className={css.castItem}>
@@ -32,8 +37,7 @@ const MovieCast = () => {
               className={css.castImage}
             />
             <p className={css.castName}>{cast.name}</p>
-            <p className={css.actorName}>{cast.name}</p>
-            <p className={css.actorRole}>{cast.character}</p>
+            <p className={css.actorRole}>The character of: "{cast.character}"</p>
           </div>
         );
       })}

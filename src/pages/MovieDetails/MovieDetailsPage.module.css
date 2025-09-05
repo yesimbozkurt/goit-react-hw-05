@@ -40,9 +40,23 @@
     color: var(--text-color);
 }
 
-.detailsContext h3 {
+.detailsContext p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.detailsContext .bold {
     font-size: 18px;
     font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.detailsContext h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--tertiary-color);
 }
 
 .poster {
@@ -62,6 +76,8 @@
     cursor: pointer;
     width: 100px;
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
 }
 
 .link:hover {
@@ -71,5 +87,15 @@
 .tabs {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 15px;
+}
+
+.tabsCast {
+    display: flex;
+    flex-direction: column;
+}
+
+.tabsReviews {
+    display: flex;
+    flex-direction: column;
 }

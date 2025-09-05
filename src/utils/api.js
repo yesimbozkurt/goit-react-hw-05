@@ -54,7 +54,7 @@ export const fetchMovieDetails = async (movieId) => {
     }
 }
 export const fetchMovieCasts = async (movieId) => {
-    const url = `${BASE_URL}/movie/${movieId}?language=en-US`;
+    const url = `${BASE_URL}/movie/${movieId}/credits?language=en-US`;
     const options = {
         headers: {
             Authorization:
@@ -69,8 +69,8 @@ export const fetchMovieCasts = async (movieId) => {
         throw error;
     }
 }
-export const fetchMovieReviews = async () => {
-    const url = `${BASE_URL}/movie/movie_id/reviews?language=en-US&page=1`;
+export const fetchMovieReviews = async (movieId) => {
+    const url = `${BASE_URL}/movie/${movieId}/reviews?language=en-US&page=1`;
     const options = {
         headers: {
             Authorization:

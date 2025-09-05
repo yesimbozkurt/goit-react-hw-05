@@ -10,8 +10,6 @@ function HomePage() {
       try {
         const data = await fetchTrendingMovies();
         setMovies(data);
-        console.log(data);
-
       } catch (error) {
         console.log(error);
       }
