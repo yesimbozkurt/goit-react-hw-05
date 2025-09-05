@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { fetchSearchedMovies } from "../../utils/api";
+import toast from "react-hot-toast";
 
 function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | loading | error | empty
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getMovies = async () => {
+      setLoading(true);
       try {
-        const data = await fetchSearchedMovies();
-        setMovies(data);
+        const data = await fetchSearchedMovies("");
+        setMovies(Array.isArray(data) ? data : data?.results ?? []);
       } catch (error) {
         console.error(error);
+        toast.error("Failed to load movies");
+      } finally {
+        setLoading(false);
       }
     };
     getMovies();
@@ -21,22 +26,21 @@ function MoviesPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const query = inputValue.trim();
+    console.log(query);
     if (!query) {
-      alert("Please enter a search term");
+      toast.error("Please enter a search term");
       return;
     }
-    setStatus("loading");
+    setLoading(true);
     try {
       const data = await fetchSearchedMovies(query);
       setMovies(Array.isArray(data) ? data : (data?.results ?? []));
-      const hasAny =
-        (Array.isArray(data) && data.length > 0) ||
-        (Array.isArray(data?.results) && data.results.length > 0);
-
-      setStatus(hasAny ? "idle" : "empty");
+      console.log(data);
     } catch (error) {
       console.error(error);
-      setStatus("error");
+      toast.error("Arama sırasında bir hata oluştu");
+    } finally {
+      setLoading(false);
     }
   };
   const handleChange = (e) => {
@@ -44,9 +48,9 @@ function MoviesPage() {
   }
 
   return (
-    <div>
+    <div >
       <h3>MoviesPage</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={inputValue}
@@ -58,28 +62,18 @@ function MoviesPage() {
           disabled={!inputValue.trim()}
         >search</button>
       </form>
-      {status === "loading" && <p>Aranıyor...</p>}
-      {status === "error" && (
-        <p>Bir şeyler ters gitti. Lütfen daha sonra tekrar dene.</p>
-      )}
-      {status === "empty" && (
-        <p>"{inputValue}" için sonuç bulunamadı.</p>
-      )}
-      {movies.length > 0 && (
+
+      {!loading && movies.length > 0 && (
         <ul>
-          {movies.map((movie) => {
-            const year =
-              movie?.release_date?.slice(0, 4) ||
-              movie?.first_air_date?.slice(0, 4) ||
-              "";
-            return (
-              <li key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
-                  {movie.title || movie.name} {year && `(${year})`}
-                </Link>
-              </li>
-            );
-          })}
+          {loading && <p>Loading...</p>}
+          {!loading && movies.length === 0 && <p>No movies found</p>}
+          {movies.map((movie) => (
+            <li key={movie.id}>
+              <Link to={`/movie/${movie.id}`}>
+                {movie.title || movie.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       )}
 

@@ -21,12 +21,11 @@ export const fetchTrendingMovies = async () => {
     }
 }
 
-export const fetchSearchedMovies = async () => {
-    const url = `${BASE_URL}/search/movie?include_adult=false&language=en-US&page=1`;
+export const fetchSearchedMovies = async (query = "") => {
+    const url = `${BASE_URL}/search/movie?query=${encodeURIComponent(query)}&include_adult=false&language=en-US&page=1`;
     const options = {
         headers: {
-            Authorization:
-                `Bearer ${API_KEY}`,
+            Authorization: `Bearer ${API_KEY}`,
         },
     };
     try {
@@ -36,7 +35,7 @@ export const fetchSearchedMovies = async () => {
         console.error("Error fetching data from API:", error);
         throw error;
     }
-}
+};
 
 export const fetchMovieDetails = async () => {
     const url = `${BASE_URL}/movie/movie_id?language=en-US`;
