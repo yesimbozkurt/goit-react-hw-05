@@ -71,10 +71,9 @@ function MoviesPage() {
           disabled={!inputValue.trim()}
         >search</button>
       </form>
-
-      {!loading && movies.length > 0 && (
+      {loading && <Loader />}
+      {movies.length > 0 && (
         <ul className={css.list}>
-          {loading && <Loader />}
           {movies.map((movie) => (
             <li className={css.item} key={movie.id}>
               <Link to={`/movies/${movie.id}`} className={css.link}>

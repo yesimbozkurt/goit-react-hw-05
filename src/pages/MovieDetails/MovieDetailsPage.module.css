@@ -84,18 +84,7 @@
     background-color: var(--tertiary-color);
 }
 
-.tabs {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-}
-
-.tabsCast {
-    display: flex;
-    flex-direction: column;
-}
-
-.tabsReviews {
-    display: flex;
-    flex-direction: column;
+.link:focus {
+    outline: none;
+    background-color: var(--tertiary-color);
 }

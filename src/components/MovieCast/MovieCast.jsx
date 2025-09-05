@@ -3,19 +3,24 @@ import { useEffect, useState } from "react";
 import { fetchMovieCasts } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import Loader from "../Loader";
 
 const MovieCast = () => {
   const [casts, setCasts] = useState([]);
   const { movieId } = useParams();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getCast = async () => {
+      setLoading(true);
       try {
         const data = await fetchMovieCasts(movieId);
         setCasts(data);
       } catch (error) {
         console.error(error);
         toast.error("Failed to load casts");
+      } finally {
+        setLoading(false);
       }
     };
     getCast();
@@ -23,7 +28,7 @@ const MovieCast = () => {
 
   return (
     <div className={css.castContainer}>
-      <p>Casts</p>
+      {loading && <Loader />}
       {casts && casts.map((cast) => {
         return (
           <div key={cast.id} className={css.castItem}>

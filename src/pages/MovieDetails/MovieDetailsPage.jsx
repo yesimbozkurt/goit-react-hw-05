@@ -52,11 +52,9 @@ function MovieDetailsPage() {
         )}
         {error && <p style={{ color: "red" }}>{error}</p>}
       </div>
-      <div className={css.tabs}>
-        <div className={css.tabsCast}><Link to="cast" className={css.link}>Casts</Link></div>
-        <div className={css.tabsReviews}><Link to="reviews" className={css.link}>Reviews</Link></div>
-        <Outlet />
-      </div>
+      <Link to="cast" className={css.link}>Casts</Link>
+      <Link to="reviews" className={css.link}>Reviews</Link>
+      <Outlet />
     </div>
   );
 }

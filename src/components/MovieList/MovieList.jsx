@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 const MovieList = ({ data }) => {
     return (
         <div className={css.MovieListContainer}>
-            <h1 className={css.MovieListTitle}>Weekly Trends</h1>
             <ul className={css.MovieList}>
                 {data.map((movie) => (
                     <li key={movie.id} className={css.MovieItem}>

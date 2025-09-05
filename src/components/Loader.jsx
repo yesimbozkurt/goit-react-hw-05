@@ -5,7 +5,7 @@ import { RiseLoader } from "react-spinners";
 function Loader() {
   return (
     <div className={Css.loader}>
-      <div><RiseLoader color="#529df1ff" /></div>
+      <RiseLoader color="#529df1ff" />
     </div>
   );
 }
