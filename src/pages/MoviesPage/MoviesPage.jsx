@@ -77,7 +77,9 @@ function MoviesPage() {
             <li className={css.item} key={movie.id}>
               <Link to={`/movies/${movie.id}`} className={css.link}>
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  src={movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : 'https://dummyimage.com/200x300/000000/fff.jpg&text=image+not+found'}
                   alt={movie.title || movie.name}
                   className={css.image}
                 />

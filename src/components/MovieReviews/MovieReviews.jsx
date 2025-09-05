@@ -31,6 +31,7 @@ const MovieReviews = () => {
       <div className={css.reviewsContainer}>{reviews && reviews.map((review) =>
         <p key={review.id}><span>{review.author}:</span> {review.content}</p>
       )}
+        {reviews.length === 0 && <p>No reviews found</p>}
       </div>
     </div>
   );

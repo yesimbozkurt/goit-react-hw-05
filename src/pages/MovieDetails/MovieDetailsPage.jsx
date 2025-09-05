@@ -39,7 +39,10 @@ function MovieDetailsPage() {
         {movie && (
           <div className={css.detailsContent}>
             <div>
-              <img className={css.poster} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+              <img className={css.poster} src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                  : "https://dummyimage.com/200x300/000000/fff.jpg&text=image+not+found"} alt={movie.title} />
             </div>
             <div className={css.detailsContext}>
               <h3>{movie.title}</h3>
