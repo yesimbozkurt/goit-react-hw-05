@@ -8,7 +8,7 @@ const MovieList = ({ data }) => {
             <ul className={css.MovieList}>
                 {data.map((movie) => (
                     <li key={movie.id} className={css.MovieItem}>
-                        <Link to={`/movie/${movie.id}`}>
+                        <Link to={`/movies/${movie.id}`}>
                             <div className={css.MovieCard}>
                                 <img
                                     src={
@@ -19,7 +19,7 @@ const MovieList = ({ data }) => {
                                     alt={movie.title}
                                     className={css.MoviePoster}
                                 />
-                                <p>{movie.title}</p>
+                                <p className={css.MovieTitle}>{movie.title}</p>
                             </div>
                         </Link>
                     </li>

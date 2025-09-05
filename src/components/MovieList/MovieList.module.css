@@ -48,3 +48,13 @@
     font-size: 28px;
     font-weight: 700;
 }
+
+.MovieTitle {
+    text-align: center;
+    color: var(--text-color);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    text-decoration: none;
+}

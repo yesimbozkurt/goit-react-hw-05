@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { fetchSearchedMovies } from "../../utils/api";
 import toast, { Toaster } from "react-hot-toast";
 import Loader from "../../components/Loader";
+import css from './MoviesPage.module.css';
 
 function MoviesPage() {
   const [movies, setMovies] = useState([]);
@@ -14,6 +15,7 @@ function MoviesPage() {
       setLoading(true);
       try {
         const data = await fetchSearchedMovies("");
+        console.log(data);
         setMovies(Array.isArray(data) ? data : data?.results ?? []);
       } catch (error) {
         console.error(error);
@@ -50,35 +52,44 @@ function MoviesPage() {
   }
 
   return (
-    <div >
-      <h3>MoviesPage</h3>
-      <form onSubmit={handleSubmit}>
+    <div className={css.MoviesPage}>
+      <h3 className={css.title}>
+        The movie you are looking for is here.</h3>
+      <form
+        className={css.form}
+        onSubmit={handleSubmit}>
         <input
+          className={css.input}
           type="text"
           value={inputValue}
           onChange={handleChange}
           placeholder="Search movies"
         />
         <button
+          className={css.button}
           type="submit"
           disabled={!inputValue.trim()}
         >search</button>
       </form>
 
       {!loading && movies.length > 0 && (
-        <ul>
+        <ul className={css.list}>
           {loading && <Loader />}
-          {/* {!loading && movies.length === 0 && <p>No movies found</p>} */}
           {movies.map((movie) => (
-            <li key={movie.id}>
-              <Link to={`/movie/${movie.id}`}>
+            <li className={css.item} key={movie.id}>
+              <Link to={`/movies/${movie.id}`} className={css.link}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title || movie.name}
+                  className={css.image}
+                />
                 {movie.title || movie.name}
               </Link>
             </li>
           ))}
         </ul>
       )}
-      <Toaster position="top-right" />
+      <Toaster position="bottom-right" />
     </div >
   );
 }

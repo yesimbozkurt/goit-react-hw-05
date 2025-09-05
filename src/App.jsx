@@ -26,21 +26,21 @@ function App() {
             element={<MoviesPage />}
           />
           <Route
-            path="/movie/:id"
+            path="/movies/:movieId"
             element={<MovieDetailsPage />}
           >
             <Route
-              path="cast"
+              path="/movies/:movieId/cast"
               element={<MovieCast />}
             />
             <Route
-              path="reviews"
+              path="/movies/:movieId/reviews"
               element={<MovieReviews />}
             />
           </Route>
           <Route path="*" element={<p>Page not found</p>} />
         </Routes>
-        <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="bottom-right" reverseOrder={false} />
 
       </Suspense>
     </div>

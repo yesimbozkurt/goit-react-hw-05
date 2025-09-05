@@ -37,8 +37,8 @@ export const fetchSearchedMovies = async (query = "") => {
     }
 };
 
-export const fetchMovieDetails = async () => {
-    const url = `${BASE_URL}/movie/movie_id?language=en-US`;
+export const fetchMovieDetails = async (movieId) => {
+    const url = `${BASE_URL}/movie/${movieId}?language=en-US`;
     const options = {
         headers: {
             Authorization:
@@ -47,14 +47,14 @@ export const fetchMovieDetails = async () => {
     };
     try {
         const response = await axios.get(url, options);
-        return response.data.results;
+        return response.data;
     } catch (error) {
-        console.error("Error fetching data from API:", error);
+        console.error("Error fetching data from API:", error.response?.data || error.message);
         throw error;
     }
 }
-export const fetchMovieCasts = async () => {
-    const url = `${BASE_URL}/movie/movie_id/credits?language=en-US`;
+export const fetchMovieCasts = async (movieId) => {
+    const url = `${BASE_URL}/movie/${movieId}?language=en-US`;
     const options = {
         headers: {
             Authorization:
@@ -63,7 +63,7 @@ export const fetchMovieCasts = async () => {
     };
     try {
         const response = await axios.get(url, options);
-        return response.data.results;
+        return response.data.cast;
     } catch (error) {
         console.error("Error fetching data from API:", error);
         throw error;
